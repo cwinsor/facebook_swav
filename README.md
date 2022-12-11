@@ -1,3 +1,23 @@
+# Experiments with SwAV (Swapping Assignments between multiple Views of the same image)
+
+This repo is a set of experiments based on the research published by the Facebook AI Research Team with accompanying code on github.
+
+@article{caron2020unsupervised,
+  title={Unsupervised Learning of Visual Features by Contrasting Cluster Assignments},
+  author={Caron, Mathilde and Misra, Ishan and Mairal, Julien and Goyal, Priya and Bojanowski, Piotr and Joulin, Armand},
+  booktitle={Proceedings of Advances in Neural Information Processing Systems (NeurIPS)},
+  year={2020}
+}
+
+The code herein is a clone of https://github.com/facebookresearch/swav.git, with modifications. 
+
+The code is licensed under the Creative Commons. The code herein is thus "adapted material" under that license and carries the same license terms.
+
+The remainder of this file presents an overview of SwAV and is (like the majority of code herein) from the the facebook git.
+
+Chris Winsor
+
+-------------------------------------------
 # Unsupervised Learning of Visual Features by Contrasting Cluster Assignments
 This code provides a PyTorch implementation and pretrained models for **SwAV** (**Sw**apping **A**ssignments between **V**iews), as described in the paper [Unsupervised Learning of Visual Features by Contrasting Cluster Assignments](https://arxiv.org/abs/2006.09882).
 
