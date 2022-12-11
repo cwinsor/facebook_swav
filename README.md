@@ -2,13 +2,14 @@
 
 This repo is a set of experiments based on the research published by the Facebook AI Research Team with accompanying code on github.
 
+```
 @article{caron2020unsupervised,
   title={Unsupervised Learning of Visual Features by Contrasting Cluster Assignments},
   author={Caron, Mathilde and Misra, Ishan and Mairal, Julien and Goyal, Priya and Bojanowski, Piotr and Joulin, Armand},
   booktitle={Proceedings of Advances in Neural Information Processing Systems (NeurIPS)},
   year={2020}
 }
-
+```
 The code herein is a clone of https://github.com/facebookresearch/swav.git, with modifications. 
 
 The code is licensed under the Creative Commons. The code herein is thus "adapted material" under that license and carries the same license terms.
