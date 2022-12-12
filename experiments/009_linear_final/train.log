@@ -1,0 +1,92 @@
+INFO - 12/12/22 09:31:49 - 0:00:00 - ============ Initialized logger ============
+INFO - 12/12/22 09:31:49 - 0:00:00 - arch: resnet50
+                                     batch_size: 512
+                                     data_path: C:\Users\chris\Downloads\ILSVRC\Data\CLS-LOC
+                                     decay_epochs: [60, 80]
+                                     dist_url: env://
+                                     dump_checkpoints: D:\code_cluster\me_swav\facebook_swav\experiments\009_linear\checkpoints
+                                     dump_path: D:\code_cluster\me_swav\facebook_swav\experiments\009_linear
+                                     epochs: 100
+                                     final_lr: 0
+                                     gamma: 0.1
+                                     global_pooling: True
+                                     gpu_to_work_on: 0
+                                     is_slurm_job: False
+                                     local_rank: 0
+                                     lr: 0.3
+                                     nesterov: False
+                                     pretrained: D:\code_cluster\me_swav\pretrained\swav_800ep_pretrain.pth.tar
+                                     rank: 0
+                                     scheduler_type: cosine
+                                     seed: 31
+                                     use_bn: False
+                                     wd: 1e-06
+                                     workers: 10
+                                     world_size: -1
+INFO - 12/12/22 09:31:49 - 0:00:00 - The experiment will be stored in D:\code_cluster\me_swav\facebook_swav\experiments\009_linear
+                                     
+
+INFO - 12/12/22 09:31:49 - 0:00:00 - 0  _CudaDeviceProperties(name='NVIDIA GeForce RTX 3060', major=8, minor=6, total_memory=12287MB, multi_processor_count=28)
+INFO - 12/12/22 09:31:49 - 0:00:00 - 1  _CudaDeviceProperties(name='NVIDIA GeForce RTX 3060', major=8, minor=6, total_memory=12287MB, multi_processor_count=28)
+INFO - 12/12/22 09:31:49 - 0:00:00 - build training dataset (start)
+INFO - 12/12/22 09:31:58 - 0:00:09 - build training dataset (end)
+INFO - 12/12/22 09:31:58 - 0:00:09 - build validation dataset (start)
+INFO - 12/12/22 09:31:59 - 0:00:10 - build validation dataset (end)
+INFO - 12/12/22 09:31:59 - 0:00:10 - Building data done
+INFO - 12/12/22 09:32:00 - 0:00:11 - Load pretrained model with msg: _IncompatibleKeys(missing_keys=[], unexpected_keys=['module.projection_head.0.weight', 'module.projection_head.0.bias', 'module.projection_head.1.weight', 'module.projection_head.1.bias', 'module.projection_head.1.running_mean', 'module.projection_head.1.running_var', 'module.projection_head.1.num_batches_tracked', 'module.projection_head.3.weight', 'module.projection_head.3.bias', 'module.prototypes.weight'])
+INFO - 12/12/22 09:32:00 - 0:00:11 - ============ Starting epoch 0 ... ============
+INFO - 12/12/22 09:32:36 - 0:00:47 - Epoch[0] - Iter: [0/2503]	Time 36.012 (36.012)	Data 28.956 (28.956)	Loss 6.9114 (6.9114)	Prec 0.000 (0.000)	LR 0.3
+INFO - 12/12/22 09:33:03 - 0:01:14 - Epoch[0] - Iter: [50/2503]	Time 0.552 (1.248)	Data 0.000 (0.568)	Loss 6.2162 (6.6265)	Prec 16.797 (6.181)	LR 0.3
+INFO - 12/12/22 09:33:31 - 0:01:42 - Epoch[0] - Iter: [100/2503]	Time 0.552 (0.904)	Data 0.000 (0.287)	Loss 5.4503 (6.2274)	Prec 27.344 (14.384)	LR 0.3
+INFO - 12/12/22 09:33:59 - 0:02:10 - Epoch[0] - Iter: [150/2503]	Time 0.550 (0.788)	Data 0.000 (0.192)	Loss 4.8134 (5.8543)	Prec 36.523 (20.425)	LR 0.3
+INFO - 12/12/22 09:34:26 - 0:02:37 - Epoch[0] - Iter: [200/2503]	Time 0.552 (0.729)	Data 0.000 (0.144)	Loss 4.2864 (5.5177)	Prec 39.648 (25.145)	LR 0.3
+INFO - 12/12/22 09:34:54 - 0:03:05 - Epoch[0] - Iter: [250/2503]	Time 0.553 (0.694)	Data 0.000 (0.116)	Loss 3.8476 (5.2212)	Prec 42.969 (28.817)	LR 0.3
+INFO - 12/12/22 09:35:22 - 0:03:33 - Epoch[0] - Iter: [300/2503]	Time 0.553 (0.671)	Data 0.000 (0.097)	Loss 3.6212 (4.9598)	Prec 44.727 (31.823)	LR 0.3
+INFO - 12/12/22 09:35:49 - 0:04:00 - Epoch[0] - Iter: [350/2503]	Time 0.555 (0.654)	Data 0.000 (0.083)	Loss 3.3593 (4.7344)	Prec 47.070 (34.187)	LR 0.3
+INFO - 12/12/22 09:36:17 - 0:04:28 - Epoch[0] - Iter: [400/2503]	Time 0.553 (0.641)	Data 0.000 (0.073)	Loss 3.0686 (4.5388)	Prec 52.344 (36.157)	LR 0.3
+INFO - 12/12/22 09:36:45 - 0:04:55 - Epoch[0] - Iter: [450/2503]	Time 0.552 (0.632)	Data 0.000 (0.065)	Loss 2.8805 (4.3671)	Prec 52.148 (37.843)	LR 0.3
+INFO - 12/12/22 09:37:12 - 0:05:23 - Epoch[0] - Iter: [500/2503]	Time 0.553 (0.624)	Data 0.000 (0.058)	Loss 2.8328 (4.2133)	Prec 54.492 (39.300)	LR 0.3
+INFO - 12/12/22 09:37:40 - 0:05:51 - Epoch[0] - Iter: [550/2503]	Time 0.554 (0.618)	Data 0.000 (0.053)	Loss 2.5269 (4.0778)	Prec 54.883 (40.559)	LR 0.3
+INFO - 12/12/22 09:38:08 - 0:06:19 - Epoch[0] - Iter: [600/2503]	Time 0.555 (0.612)	Data 0.000 (0.049)	Loss 2.6055 (3.9574)	Prec 54.883 (41.661)	LR 0.3
+INFO - 12/12/22 09:38:35 - 0:06:46 - Epoch[0] - Iter: [650/2503]	Time 0.555 (0.608)	Data 0.000 (0.045)	Loss 2.4157 (3.8498)	Prec 55.859 (42.634)	LR 0.3
+INFO - 12/12/22 09:39:03 - 0:07:14 - Epoch[0] - Iter: [700/2503]	Time 0.552 (0.604)	Data 0.000 (0.042)	Loss 2.4885 (3.7518)	Prec 53.906 (43.535)	LR 0.3
+INFO - 12/12/22 09:39:31 - 0:07:42 - Epoch[0] - Iter: [750/2503]	Time 0.554 (0.601)	Data 0.000 (0.039)	Loss 2.2505 (3.6620)	Prec 59.375 (44.333)	LR 0.3
+INFO - 12/12/22 09:39:59 - 0:08:10 - Epoch[0] - Iter: [800/2503]	Time 0.557 (0.598)	Data 0.000 (0.037)	Loss 2.5758 (3.5816)	Prec 52.148 (45.052)	LR 0.3
+INFO - 12/12/22 09:40:26 - 0:08:37 - Epoch[0] - Iter: [850/2503]	Time 0.554 (0.595)	Data 0.000 (0.034)	Loss 2.2484 (3.5075)	Prec 59.180 (45.735)	LR 0.3
+INFO - 12/12/22 09:40:54 - 0:09:05 - Epoch[0] - Iter: [900/2503]	Time 0.552 (0.593)	Data 0.000 (0.032)	Loss 2.2267 (3.4397)	Prec 58.984 (46.352)	LR 0.3
+INFO - 12/12/22 09:41:22 - 0:09:33 - Epoch[0] - Iter: [950/2503]	Time 0.554 (0.591)	Data 0.000 (0.031)	Loss 2.3825 (3.3765)	Prec 54.297 (46.920)	LR 0.3
+INFO - 12/12/22 09:41:50 - 0:10:01 - Epoch[0] - Iter: [1000/2503]	Time 0.556 (0.589)	Data 0.000 (0.029)	Loss 2.2366 (3.3188)	Prec 54.492 (47.453)	LR 0.3
+INFO - 12/12/22 09:42:17 - 0:10:28 - Epoch[0] - Iter: [1050/2503]	Time 0.553 (0.588)	Data 0.000 (0.028)	Loss 2.0960 (3.2636)	Prec 61.914 (47.962)	LR 0.3
+INFO - 12/12/22 09:42:45 - 0:10:56 - Epoch[0] - Iter: [1100/2503]	Time 0.554 (0.586)	Data 0.000 (0.027)	Loss 2.1653 (3.2130)	Prec 58.984 (48.419)	LR 0.3
+INFO - 12/12/22 09:43:13 - 0:11:24 - Epoch[0] - Iter: [1150/2503]	Time 0.558 (0.585)	Data 0.000 (0.026)	Loss 2.0343 (3.1653)	Prec 57.031 (48.843)	LR 0.3
+INFO - 12/12/22 09:43:41 - 0:11:52 - Epoch[0] - Iter: [1200/2503]	Time 0.557 (0.584)	Data 0.000 (0.024)	Loss 2.1800 (3.1202)	Prec 54.688 (49.254)	LR 0.3
+INFO - 12/12/22 09:44:09 - 0:12:19 - Epoch[0] - Iter: [1250/2503]	Time 0.555 (0.583)	Data 0.000 (0.024)	Loss 2.2344 (3.0791)	Prec 58.398 (49.622)	LR 0.3
+INFO - 12/12/22 09:44:36 - 0:12:47 - Epoch[0] - Iter: [1300/2503]	Time 0.558 (0.581)	Data 0.000 (0.023)	Loss 2.0384 (3.0389)	Prec 60.156 (49.993)	LR 0.3
+INFO - 12/12/22 09:45:04 - 0:13:15 - Epoch[0] - Iter: [1350/2503]	Time 0.555 (0.581)	Data 0.000 (0.022)	Loss 2.1055 (3.0012)	Prec 54.297 (50.344)	LR 0.3
+INFO - 12/12/22 09:45:32 - 0:13:43 - Epoch[0] - Iter: [1400/2503]	Time 0.554 (0.580)	Data 0.000 (0.021)	Loss 2.0382 (2.9653)	Prec 58.984 (50.669)	LR 0.3
+INFO - 12/12/22 09:46:00 - 0:14:10 - Epoch[0] - Iter: [1450/2503]	Time 0.557 (0.579)	Data 0.000 (0.020)	Loss 1.8305 (2.9318)	Prec 60.938 (50.977)	LR 0.3
+INFO - 12/12/22 09:46:27 - 0:14:38 - Epoch[0] - Iter: [1500/2503]	Time 0.556 (0.578)	Data 0.000 (0.020)	Loss 1.8279 (2.8999)	Prec 64.258 (51.277)	LR 0.3
+INFO - 12/12/22 09:46:55 - 0:15:06 - Epoch[0] - Iter: [1550/2503]	Time 0.555 (0.577)	Data 0.000 (0.019)	Loss 2.0137 (2.8688)	Prec 61.328 (51.577)	LR 0.3
+INFO - 12/12/22 09:47:23 - 0:15:34 - Epoch[0] - Iter: [1600/2503]	Time 0.557 (0.577)	Data 0.000 (0.018)	Loss 1.9227 (2.8396)	Prec 60.352 (51.843)	LR 0.3
+INFO - 12/12/22 09:47:51 - 0:16:02 - Epoch[0] - Iter: [1650/2503]	Time 0.556 (0.576)	Data 0.000 (0.018)	Loss 1.8928 (2.8119)	Prec 58.984 (52.106)	LR 0.3
+INFO - 12/12/22 09:48:19 - 0:16:29 - Epoch[0] - Iter: [1700/2503]	Time 0.555 (0.575)	Data 0.000 (0.017)	Loss 1.8717 (2.7846)	Prec 62.305 (52.373)	LR 0.3
+INFO - 12/12/22 09:48:46 - 0:16:57 - Epoch[0] - Iter: [1750/2503]	Time 0.555 (0.575)	Data 0.000 (0.017)	Loss 2.0416 (2.7598)	Prec 59.570 (52.617)	LR 0.3
+INFO - 12/12/22 09:49:14 - 0:17:25 - Epoch[0] - Iter: [1800/2503]	Time 0.553 (0.574)	Data 0.000 (0.016)	Loss 1.9034 (2.7351)	Prec 59.180 (52.860)	LR 0.3
+INFO - 12/12/22 09:49:42 - 0:17:53 - Epoch[0] - Iter: [1850/2503]	Time 0.555 (0.574)	Data 0.000 (0.016)	Loss 1.8303 (2.7117)	Prec 61.328 (53.085)	LR 0.3
+INFO - 12/12/22 09:50:10 - 0:18:21 - Epoch[0] - Iter: [1900/2503]	Time 0.556 (0.573)	Data 0.000 (0.016)	Loss 1.8784 (2.6892)	Prec 59.961 (53.298)	LR 0.3
+INFO - 12/12/22 09:50:37 - 0:18:48 - Epoch[0] - Iter: [1950/2503]	Time 0.554 (0.573)	Data 0.000 (0.015)	Loss 1.8357 (2.6677)	Prec 61.523 (53.514)	LR 0.3
+INFO - 12/12/22 09:51:05 - 0:19:16 - Epoch[0] - Iter: [2000/2503]	Time 0.555 (0.572)	Data 0.000 (0.015)	Loss 1.7195 (2.6477)	Prec 64.844 (53.707)	LR 0.3
+INFO - 12/12/22 09:51:33 - 0:19:44 - Epoch[0] - Iter: [2050/2503]	Time 0.556 (0.572)	Data 0.000 (0.014)	Loss 1.7198 (2.6277)	Prec 63.672 (53.916)	LR 0.3
+INFO - 12/12/22 09:52:01 - 0:20:12 - Epoch[0] - Iter: [2100/2503]	Time 0.556 (0.572)	Data 0.000 (0.014)	Loss 2.0173 (2.6087)	Prec 59.766 (54.102)	LR 0.3
+INFO - 12/12/22 09:52:29 - 0:20:40 - Epoch[0] - Iter: [2150/2503]	Time 0.554 (0.571)	Data 0.000 (0.014)	Loss 1.7872 (2.5900)	Prec 62.109 (54.294)	LR 0.3
+INFO - 12/12/22 09:52:56 - 0:21:07 - Epoch[0] - Iter: [2200/2503]	Time 0.554 (0.571)	Data 0.000 (0.014)	Loss 1.8699 (2.5726)	Prec 58.789 (54.454)	LR 0.3
+INFO - 12/12/22 09:53:24 - 0:21:35 - Epoch[0] - Iter: [2250/2503]	Time 0.555 (0.571)	Data 0.000 (0.013)	Loss 1.7718 (2.5552)	Prec 59.570 (54.630)	LR 0.3
+INFO - 12/12/22 09:53:52 - 0:22:03 - Epoch[0] - Iter: [2300/2503]	Time 0.553 (0.570)	Data 0.000 (0.013)	Loss 1.8434 (2.5385)	Prec 61.914 (54.800)	LR 0.3
+INFO - 12/12/22 09:54:20 - 0:22:31 - Epoch[0] - Iter: [2350/2503]	Time 0.555 (0.570)	Data 0.000 (0.013)	Loss 1.8231 (2.5222)	Prec 61.133 (54.966)	LR 0.3
+INFO - 12/12/22 09:54:48 - 0:22:58 - Epoch[0] - Iter: [2400/2503]	Time 0.556 (0.570)	Data 0.000 (0.012)	Loss 1.7111 (2.5066)	Prec 64.258 (55.123)	LR 0.3
+INFO - 12/12/22 09:55:15 - 0:23:26 - Epoch[0] - Iter: [2450/2503]	Time 0.556 (0.569)	Data 0.000 (0.012)	Loss 1.6954 (2.4913)	Prec 64.648 (55.275)	LR 0.3
+INFO - 12/12/22 09:55:43 - 0:23:54 - Epoch[0] - Iter: [2500/2503]	Time 0.548 (0.569)	Data 0.000 (0.012)	Loss 1.7845 (2.4764)	Prec 63.672 (55.430)	LR 0.3
+INFO - 12/12/22 09:57:10 - 0:25:21 - Test:	Time 0.845	Loss 1.5304	Acc@1 65.584	Best Acc@1 so far 65.6
+INFO - 12/12/22 09:57:10 - 0:25:21 - ============ Starting epoch 1 ... ============
+INFO - 12/12/22 09:57:41 - 0:25:51 - Epoch[1] - Iter: [0/2503]	Time 30.123 (30.123)	Data 29.211 (29.211)	Loss 1.5607 (1.5607)	Prec 66.992 (66.992)	LR 0.2999259840548597
+INFO - 12/12/22 09:58:08 - 0:26:19 - Epoch[1] - Iter: [50/2503]	Time 0.551 (1.134)	Data 0.000 (0.573)	Loss 1.6868 (1.7152)	Prec 63.672 (63.036)	LR 0.2999259840548597

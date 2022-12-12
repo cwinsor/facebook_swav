@@ -51,15 +51,21 @@ def init_distributed_mode(args):
             os.environ["SLURM_TASKS_PER_NODE"][0]
         )
     else:
-        # multi-GPU job (local or multi-node) - jobs started with torch.distributed.launch
-        # read environment variables
-        args.rank = int(os.environ["RANK"])
-        args.world_size = int(os.environ["WORLD_SIZE"])
+        # # multi-GPU job (local or multi-node) - jobs started with torch.distributed.launch
+        # # read environment variables
+        # args.rank = int(os.environ["RANK"])
+        # args.world_size = int(os.environ["WORLD_SIZE"])
+
+        # ref: https://pytorch.org/docs/stable/distributed.html
+        os.environ["MASTER_PORT"] = "4999" 
+        os.environ["MASTER_ADDR"] = 'localhost'
+        os.environ["WORLD_SIZE"] = "1" 
+        os.environ["RANK"] = "0"
 
     # prepare distributed
     dist.init_process_group(
-        backend="nccl",
-        init_method=args.dist_url,
+        backend="gloo",
+        init_method=None,
         world_size=args.world_size,
         rank=args.rank,
     )
@@ -191,6 +197,6 @@ def accuracy(output, target, topk=(1,)):
 
         res = []
         for k in topk:
-            correct_k = correct[:k].view(-1).float().sum(0, keepdim=True)
+            correct_k = correct[:k].reshape(-1).float().sum(0, keepdim=True)
             res.append(correct_k.mul_(100.0 / batch_size))
         return res

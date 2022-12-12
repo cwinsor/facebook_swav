@@ -87,6 +87,7 @@ parser.add_argument("--rank", default=0, type=int, help="""rank of this process:
 parser.add_argument("--local_rank", default=0, type=int,
                     help="this argument is not used and should be ignored")
 
+cuda = torch.device('cuda:0') 
 
 def main():
     global args, best_acc
@@ -97,9 +98,17 @@ def main():
         args, "epoch", "loss", "prec1", "prec5", "loss_val", "prec1_val", "prec5_val"
     )
 
+    # GPUs...
+    for i in range(torch.cuda.device_count()):
+        logger.info("{}  {}".format(i, torch.cuda.get_device_properties(i)))
+
     # build data
+    logger.info("build training dataset (start)")
     train_dataset = datasets.ImageFolder(os.path.join(args.data_path, "train"))
+    logger.info("build training dataset (end)")
+    logger.info("build validation dataset (start)")
     val_dataset = datasets.ImageFolder(os.path.join(args.data_path, "val"))
+    logger.info("build validation dataset (end)")
     tr_normalize = transforms.Normalize(
         mean=[0.485, 0.456, 0.406], std=[0.228, 0.224, 0.225]
     )
@@ -133,28 +142,34 @@ def main():
 
     # build model
     model = resnet_models.__dict__[args.arch](output_dim=0, eval_mode=True)
+    model = model.to(cuda)
+    model = nn.DataParallel(model)
+
     linear_classifier = RegLog(1000, args.arch, args.global_pooling, args.use_bn)
+    linear_classifier = linear_classifier.to(cuda)
+    linear_classifier = nn.DataParallel(linear_classifier)
 
     # convert batch norm layers (if any)
     linear_classifier = nn.SyncBatchNorm.convert_sync_batchnorm(linear_classifier)
 
     # model to gpu
-    model = model.cuda()
-    linear_classifier = linear_classifier.cuda()
-    linear_classifier = nn.parallel.DistributedDataParallel(
-        linear_classifier,
-        device_ids=[args.gpu_to_work_on],
-        find_unused_parameters=True,
-    )
+    # linear_classifier = nn.parallel.DistributedDataParallel(
+    #     linear_classifier,
+    #     device_ids=[args.gpu_to_work_on],
+    #     find_unused_parameters=True,
+    # )
     model.eval()
 
     # load weights
     if os.path.isfile(args.pretrained):
-        state_dict = torch.load(args.pretrained, map_location="cuda:" + str(args.gpu_to_work_on))
+        # state_dict = torch.load(args.pretrained, map_location="cuda:" + str(args.gpu_to_work_on))
+        # state_dict = torch.load(args.pretrained, map_location='cuda:1')
+        state_dict = torch.load(args.pretrained, map_location=cuda)
+        # state_dict = torch.load(args.pretrained) 
         if "state_dict" in state_dict:
             state_dict = state_dict["state_dict"]
         # remove prefixe "module."
-        state_dict = {k.replace("module.", ""): v for k, v in state_dict.items()}
+        # state_dict = {k.replace("module.", ""): v for k, v in state_dict.items()}
         for k, v in model.state_dict().items():
             if k not in list(state_dict):
                 logger.info('key "{}" could not be found in provided state dict'.format(k))
@@ -281,15 +296,15 @@ def train(model, reglog, optimizer, loader, epoch):
 
     model.eval()
     reglog.train()
-    criterion = nn.CrossEntropyLoss().cuda()
+    criterion = nn.CrossEntropyLoss().to(cuda)
 
     for iter_epoch, (inp, target) in enumerate(loader):
         # measure data loading time
         data_time.update(time.perf_counter() - end)
 
         # move to gpu
-        inp = inp.cuda(non_blocking=True)
-        target = target.cuda(non_blocking=True)
+        inp = inp.to(cuda)
+        target = target.to(cuda)
 
         # forward
         with torch.no_grad():
@@ -349,7 +364,7 @@ def validate_network(val_loader, model, linear_classifier):
     model.eval()
     linear_classifier.eval()
 
-    criterion = nn.CrossEntropyLoss().cuda()
+    criterion = nn.CrossEntropyLoss().to(cuda)
 
     with torch.no_grad():
         end = time.perf_counter()

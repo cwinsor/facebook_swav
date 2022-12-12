@@ -1,6 +1,6 @@
 # Experiments with SwAV (Swapping Assignments between multiple Views of the same image)
 
-This repo is a set of experiments based on the research published by the Facebook AI Research Team with accompanying code on github.
+This repo is a set of experiments based on research published by Facebook AI Research.
 
 ```
 @article{caron2020unsupervised,
@@ -10,13 +10,43 @@ This repo is a set of experiments based on the research published by the Faceboo
   year={2020}
 }
 ```
-The code herein is a clone of https://github.com/facebookresearch/swav.git, with modifications. 
+This code is a clone of the accompanying https://github.com/facebookresearch/swav.git. That git (and this code) is licensed under the Creative Commons. The code here is thus "adapted material" under that license and carries the same license terms.
 
-The code is licensed under the Creative Commons. The code herein is thus "adapted material" under that license and carries the same license terms.
-
-The remainder of this file presents an overview of SwAV and is (like the majority of code herein) from the the facebook git.
+The remainder of this file are notes from my work, followed by the original overview from the Facebook SwAV team.
 
 Chris Winsor
+
+Note 1:
+When running eval_linear.py: val_dataset = datasets.ImageFolder(os.path.join(args.data_path, "val"))
+* Signature: Couldn't find any class folder in C:\Users\chris\Downloads\ILSVRC\Data\CLS-LOC\val.
+* Problem: the ILSVRC val data does not have the "synset" folder structure required by ImageFolder.
+* Discussion: 
+  * https://discuss.pytorch.org/t/issues-with-dataloader-for-imagenet-should-i-use-datasets-imagefolder-or-datasets-imagenet/115742/7
+and
+  * https://github.com/pytorch/examples/tree/main/imagenet
+* Solution:
+  * https://github.com/soumith/imagenetloader.torch
+  * in other words - 
+    * clone the git from soumith and grab the valprep.sh file
+    * copy to ...\ILSVRC\Data\CLS-LOC\val
+    * run it
+    * repeat for ...\ILSVRC\Annotations\CLS-LOC\val
+  * This moves the val images (or annotatios) into folders which will satisfy pytorch ImageFolder. NOTE there is some risk here relying on soumith - really there should be a script to verify/reproduce soumith's script - this would involve: read each annotations/val/*.xml, confirm there is only a single "semset", create semset folder (if not created) and move file to that folder.  Need to do this for data/val and annotations/val.  
+
+
+ILSRV (ImageNET) is originally published at https://image-net.org/ then popularized by https://www.kaggle.com/competitions/imagenet-object-localization-challenge/.  Downloads are available at Kaggle.
+
+the folders are /Annodataions, /Data, /ImageSets.
+
+/Annotations/train, /Data/train have a senset-based folder structure - the image/annotation is under a folder with a senset prefix. This makes them directly readable by pytorch 
+/Data has a "senset" folder structure includes /train, /val, /test. E
+
+Imagenet .org no longer really provides download support but the kaggle site does.
+
+The 
+https://wordnet.princeton.edu/
+
+
 
 -------------------------------------------
 # Unsupervised Learning of Visual Features by Contrasting Cluster Assignments

@@ -1,0 +1,143 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+
+        {
+            "name": "Python: Current File",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
+        {
+            "name": "001_linear",
+            "type": "python",
+            "request": "launch",
+            "program": "eval_linear.py",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": [
+                "--data_path", "C:\\Users\\chris\\Downloads\\ILSVRC\\Data\\CLS-LOC",
+                "--pretrained", "D:\\code_cluster\\me_swav\\pretrained\\swav_800ep_pretrain.pth.tar",
+                "--dump_path", "D:\\code_cluster\\me_swav\\facebook_swav\\experiments\\001_linear"
+            ]
+        },
+        {
+            "name": "002_linear",
+            "type": "python",
+            "request": "launch",
+            "program": "eval_linear.py",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": [
+                "--data_path", "C:\\Users\\chris\\Downloads\\ILSVRC\\Data\\CLS-LOC",
+                "--pretrained", "D:\\code_cluster\\me_swav\\pretrained\\swav_800ep_pretrain.pth.tar",
+                "--dump_path", "D:\\code_cluster\\me_swav\\facebook_swav\\experiments\\002_linear"
+            ]
+        },
+        {
+            "name": "003_linear",
+            "type": "python",
+            "request": "launch",
+            "program": "eval_linear.py",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": [
+                "--data_path", "C:\\Users\\chris\\Downloads\\ILSVRC\\Data\\CLS-LOC",
+                "--pretrained", "D:\\code_cluster\\me_swav\\pretrained\\swav_800ep_pretrain.pth.tar",
+                "--dump_path", "D:\\code_cluster\\me_swav\\facebook_swav\\experiments\\003_linear",
+                "--batch_size", "64"
+            ]
+        },
+        {
+            "name": "004_linear",
+            "type": "python",
+            "request": "launch",
+            "program": "eval_linear.py",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": [
+                "--data_path", "C:\\Users\\chris\\Downloads\\ILSVRC\\Data\\CLS-LOC",
+                "--pretrained", "D:\\code_cluster\\me_swav\\pretrained\\swav_800ep_pretrain.pth.tar",
+                "--dump_path", "D:\\code_cluster\\me_swav\\facebook_swav\\experiments\\004_linear",
+                "--batch_size", "128"
+            ]
+        },
+        {
+            "name": "006_linear",
+            "type": "python",
+            "request": "launch",
+            "program": "eval_linear.py",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": [
+                "--data_path", "C:\\Users\\chris\\Downloads\\ILSVRC\\Data\\CLS-LOC",
+                "--pretrained", "D:\\code_cluster\\me_swav\\pretrained\\swav_800ep_pretrain.pth.tar",
+                "--dump_path", "D:\\code_cluster\\me_swav\\facebook_swav\\experiments\\006_linear",
+                "--batch_size", "512"
+            ]
+        },
+        {
+            "name": "008_linear",
+            "type": "python",
+            "request": "launch",
+            "program": "eval_linear.py",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": [
+                "--data_path", "C:\\Users\\chris\\Downloads\\ILSVRC\\Data\\CLS-LOC",
+                "--pretrained", "D:\\code_cluster\\me_swav\\pretrained\\swav_800ep_pretrain.pth.tar",
+                "--dump_path", "D:\\code_cluster\\me_swav\\facebook_swav\\experiments\\008_linear",
+                "--batch_size", "2048"
+            ]
+        },
+        {
+            "name": "009_linear",
+            "type": "python",
+            "request": "launch",
+            "program": "eval_linear.py",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": [
+                "--data_path", "C:\\Users\\chris\\Downloads\\ILSVRC\\Data\\CLS-LOC",
+                "--pretrained", "D:\\code_cluster\\me_swav\\pretrained\\swav_800ep_pretrain.pth.tar",
+                "--dump_path", "D:\\code_cluster\\me_swav\\facebook_swav\\experiments\\009_linear",
+                "--batch_size", "512"
+            ]
+        },
+        {
+            "name": "010_linear",
+            "type": "python",
+            "request": "launch",
+            "program": "eval_linear.py",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": [
+                "--data_path", "C:\\Users\\chris\\Downloads\\ILSVRC\\Data\\CLS-LOC",
+                "--pretrained", "D:\\code_cluster\\me_swav\\pretrained\\swav_800ep_pretrain.pth.tar",
+                "--dump_path", "D:\\code_cluster\\me_swav\\facebook_swav\\experiments\\010_linear",
+                "--batch_size", "512"
+            ]
+        },
+        {
+            "name": "011_linear",
+            "type": "python",
+            "request": "launch",
+            "program": "eval_linear.py",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": [
+                "--data_path", "C:\\Users\\chris\\Downloads\\ILSVRC\\Data\\CLS-LOC",
+                "--pretrained", "D:\\code_cluster\\me_swav\\pretrained\\swav_800ep_pretrain.pth.tar",
+                "--dump_path", "D:\\code_cluster\\me_swav\\facebook_swav\\experiments\\011_linear",
+                "--batch_size", "1024"
+            ]
+        },
+        // C:\Users\chris\Downloads\ILSVRC\Data\CLS-LOC
+        //   "--data_path", "C:\\Users\\chris\\Downloads\\QUICK_SUBSET3",
+    ]
+}
