@@ -1,2 +1,6 @@
 */__pycache__/
 
+checkpoint*.pth.tar
+params.pkl
+stats*.pkl
+train - Copy.log
