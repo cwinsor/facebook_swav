@@ -1,0 +1,19 @@
+Debug notes...
+
+Note 1:
+When running eval_linear.py: val_dataset = datasets.ImageFolder(os.path.join(args.data_path, "val"))
+* Signature: Couldn't find any class folder in C:\Users\chris\Downloads\ILSVRC\Data\CLS-LOC\val.
+* Problem: the ILSVRC val data does not have the "synset" folder structure required by ImageFolder.
+* Discussion: 
+  * https://discuss.pytorch.org/t/issues-with-dataloader-for-imagenet-should-i-use-datasets-imagefolder-or-datasets-imagenet/115742/7
+and
+  * https://github.com/pytorch/examples/tree/main/imagenet
+* Solution:
+  * https://github.com/soumith/imagenetloader.torch
+  * in other words - 
+    * clone the git from soumith and grab the valprep.sh file
+    * copy to ...\ILSVRC\Data\CLS-LOC\val
+    * run it
+    * repeat for ...\ILSVRC\Annotations\CLS-LOC\val
+  * This moves the val images (or annotatios) into folders which will satisfy pytorch ImageFolder. NOTE there is some risk here relying on soumith - really there should be a script to verify/reproduce soumith's script - this would involve: read each annotations/val/*.xml, confirm there is only a single "semset", create semset folder (if not created) and move file to that folder.  Need to do this for data/val and annotations/val.  
+

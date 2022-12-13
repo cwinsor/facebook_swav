@@ -1,0 +1,8 @@
+
+Platform is:
+Intel i7-12700 2.1GHz Twelve core
+128 GB DDR5-4800
+1TB SSD
+(2) NVIDIA GeForce RTS 3060 (12GB each)
+ASUS Z690-P motherboard
+Windows 10
