@@ -1,5 +1,7 @@
 */__pycache__/
+__pycache__
 
+checkpoints
 checkpoint*.pth.tar
 params.pkl
 stats*.pkl

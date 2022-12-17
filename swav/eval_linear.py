@@ -30,6 +30,8 @@ from src.utils import (
 )
 import src.resnet50 as resnet_models
 
+# os.system("")  # enables ansi escape characters in terminal - needed for torchinfo.summary on windows
+
 logger = getLogger()
 
 
@@ -158,9 +160,14 @@ def main():
     #     device_ids=[args.gpu_to_work_on],
     #     find_unused_parameters=True,
     # )
+    linear_classifier = nn.parallel.DistributedDataParallel(
+        linear_classifier,
+        find_unused_parameters=True,
+    )
     model.eval()
 
     # load weights
+
     if os.path.isfile(args.pretrained):
         # state_dict = torch.load(args.pretrained, map_location="cuda:" + str(args.gpu_to_work_on))
         # state_dict = torch.load(args.pretrained, map_location='cuda:1')
@@ -302,6 +309,15 @@ def train(model, reglog, optimizer, loader, epoch):
         # measure data loading time
         data_time.update(time.perf_counter() - end)
 
+        if iter_epoch == 0:
+
+            # Print model's state_dict
+            logger.info("Model's state_dict:")
+            for param_tensor in model.state_dict():
+                logger.info("{}{}{}".format(param_tensor, "\t", model.state_dict()[param_tensor].size()))
+            logger.info("info.model:")
+            logger.info(model)
+
         # move to gpu
         inp = inp.to(cuda)
         target = target.to(cuda)
@@ -310,6 +326,27 @@ def train(model, reglog, optimizer, loader, epoch):
         with torch.no_grad():
             output = model(inp)
         output = reglog(output)
+
+        if iter_epoch == 0:
+            # print running processes and their GPU memory
+            #logger.info("gpu0: {}".format(torch.cuda.list_gpu_processes("cuda:0")))
+            #logger.info("gpu1: {}".format(torch.cuda.list_gpu_processes("cuda:1")))
+            #blah = torch.cuda.device(1)
+            gpu0proc = torch.cuda.list_gpu_processes(0)
+            gpu1proc = torch.cuda.list_gpu_processes(1)
+            logger.info("gpu0 processes: {}".format(gpu0proc))
+            logger.info("gpu1 processes: {}".format(gpu1proc))
+
+            mem_summary = torch.cuda.memory_summary()
+            logger.info("mem_summary: {}".format(mem_summary))
+
+        if iter_epoch == 0:
+            # Print reglog's state_dict
+            logger.info("RegLog's state_dict:")
+            for param_tensor in reglog.state_dict():
+                logger.info("{}{}{}".format(param_tensor, "\t", reglog.state_dict()[param_tensor].size()))
+            logger.info("info.reglog:")
+            logger.info(reglog)
 
         # compute cross entropy loss
         loss = criterion(output, target)

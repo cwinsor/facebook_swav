@@ -1,0 +1,125 @@
+INFO - 12/13/22 21:34:48 - 0:00:00 - ============ Initialized logger ============
+INFO - 12/13/22 21:34:48 - 0:00:00 - arch: resnet50
+                                     batch_size: 512
+                                     data_path: C:\Users\chris\Downloads\ILSVRC\Data\CLS-LOC
+                                     decay_epochs: [60, 80]
+                                     dist_url: env://
+                                     dump_checkpoints: D:\code_cluster\me_swav\facebook_swav\experiments\014_linear\checkpoints
+                                     dump_path: D:\code_cluster\me_swav\facebook_swav\experiments\014_linear
+                                     epochs: 100
+                                     final_lr: 0
+                                     gamma: 0.1
+                                     global_pooling: True
+                                     gpu_to_work_on: 0
+                                     is_slurm_job: False
+                                     local_rank: 0
+                                     lr: 0.3
+                                     nesterov: False
+                                     pretrained: D:\code_cluster\me_swav\pretrained\swav_800ep_pretrain.pth.tar
+                                     rank: 0
+                                     scheduler_type: cosine
+                                     seed: 31
+                                     use_bn: False
+                                     wd: 1e-06
+                                     workers: 1
+                                     world_size: -1
+INFO - 12/13/22 21:34:48 - 0:00:00 - The experiment will be stored in D:\code_cluster\me_swav\facebook_swav\experiments\014_linear
+                                     
+
+INFO - 12/13/22 21:34:48 - 0:00:00 - 0  _CudaDeviceProperties(name='NVIDIA GeForce RTX 3060', major=8, minor=6, total_memory=12287MB, multi_processor_count=28)
+INFO - 12/13/22 21:34:48 - 0:00:00 - 1  _CudaDeviceProperties(name='NVIDIA GeForce RTX 3060', major=8, minor=6, total_memory=12287MB, multi_processor_count=28)
+INFO - 12/13/22 21:34:48 - 0:00:00 - build training dataset (start)
+INFO - 12/13/22 21:34:57 - 0:00:09 - build training dataset (end)
+INFO - 12/13/22 21:34:57 - 0:00:09 - build validation dataset (start)
+INFO - 12/13/22 21:34:58 - 0:00:10 - build validation dataset (end)
+INFO - 12/13/22 21:34:58 - 0:00:10 - Building data done
+INFO - 12/13/22 21:35:00 - 0:00:11 - Load pretrained model with msg: _IncompatibleKeys(missing_keys=[], unexpected_keys=['module.projection_head.0.weight', 'module.projection_head.0.bias', 'module.projection_head.1.weight', 'module.projection_head.1.bias', 'module.projection_head.1.running_mean', 'module.projection_head.1.running_var', 'module.projection_head.1.num_batches_tracked', 'module.projection_head.3.weight', 'module.projection_head.3.bias', 'module.prototypes.weight'])
+INFO - 12/13/22 21:35:00 - 0:00:11 - ============ Starting epoch 0 ... ============
+INFO - 12/13/22 21:35:10 - 0:00:22 - Epoch[0] - Iter: [0/2503]	Time 10.743 (10.743)	Data 5.002 (5.002)	Loss 6.9114 (6.9114)	Prec 0.000 (0.000)	LR 0.3
+INFO - 12/13/22 21:37:13 - 0:00:00 - ============ Initialized logger ============
+INFO - 12/13/22 21:37:13 - 0:00:00 - arch: resnet50
+                                     batch_size: 512
+                                     data_path: C:\Users\chris\Downloads\ILSVRC\Data\CLS-LOC
+                                     decay_epochs: [60, 80]
+                                     dist_url: env://
+                                     dump_checkpoints: D:\code_cluster\me_swav\facebook_swav\experiments\014_linear\checkpoints
+                                     dump_path: D:\code_cluster\me_swav\facebook_swav\experiments\014_linear
+                                     epochs: 100
+                                     final_lr: 0
+                                     gamma: 0.1
+                                     global_pooling: True
+                                     gpu_to_work_on: 0
+                                     is_slurm_job: False
+                                     local_rank: 0
+                                     lr: 0.3
+                                     nesterov: False
+                                     pretrained: D:\code_cluster\me_swav\pretrained\swav_800ep_pretrain.pth.tar
+                                     rank: 0
+                                     scheduler_type: cosine
+                                     seed: 31
+                                     use_bn: False
+                                     wd: 1e-06
+                                     workers: 20
+                                     world_size: -1
+INFO - 12/13/22 21:37:13 - 0:00:00 - The experiment will be stored in D:\code_cluster\me_swav\facebook_swav\experiments\014_linear
+                                     
+
+INFO - 12/13/22 21:37:13 - 0:00:00 - 0  _CudaDeviceProperties(name='NVIDIA GeForce RTX 3060', major=8, minor=6, total_memory=12287MB, multi_processor_count=28)
+INFO - 12/13/22 21:37:13 - 0:00:00 - 1  _CudaDeviceProperties(name='NVIDIA GeForce RTX 3060', major=8, minor=6, total_memory=12287MB, multi_processor_count=28)
+INFO - 12/13/22 21:37:13 - 0:00:00 - build training dataset (start)
+INFO - 12/13/22 21:37:22 - 0:00:09 - build training dataset (end)
+INFO - 12/13/22 21:37:22 - 0:00:09 - build validation dataset (start)
+INFO - 12/13/22 21:37:22 - 0:00:10 - build validation dataset (end)
+INFO - 12/13/22 21:37:22 - 0:00:10 - Building data done
+INFO - 12/13/22 21:37:23 - 0:00:11 - Load pretrained model with msg: _IncompatibleKeys(missing_keys=[], unexpected_keys=['module.projection_head.0.weight', 'module.projection_head.0.bias', 'module.projection_head.1.weight', 'module.projection_head.1.bias', 'module.projection_head.1.running_mean', 'module.projection_head.1.running_var', 'module.projection_head.1.num_batches_tracked', 'module.projection_head.3.weight', 'module.projection_head.3.bias', 'module.prototypes.weight'])
+INFO - 12/13/22 21:37:23 - 0:00:11 - ============ Starting epoch 0 ... ============
+INFO - 12/13/22 21:42:00 - 0:00:00 - ============ Initialized logger ============
+INFO - 12/13/22 21:42:00 - 0:00:00 - arch: resnet50
+                                     batch_size: 512
+                                     data_path: C:\Users\chris\Downloads\ILSVRC\Data\CLS-LOC
+                                     decay_epochs: [60, 80]
+                                     dist_url: env://
+                                     dump_checkpoints: D:\code_cluster\me_swav\facebook_swav\experiments\014_linear\checkpoints
+                                     dump_path: D:\code_cluster\me_swav\facebook_swav\experiments\014_linear
+                                     epochs: 100
+                                     final_lr: 0
+                                     gamma: 0.1
+                                     global_pooling: True
+                                     gpu_to_work_on: 0
+                                     is_slurm_job: False
+                                     local_rank: 0
+                                     lr: 0.3
+                                     nesterov: False
+                                     pretrained: D:\code_cluster\me_swav\pretrained\swav_800ep_pretrain.pth.tar
+                                     rank: 0
+                                     scheduler_type: cosine
+                                     seed: 31
+                                     use_bn: False
+                                     wd: 1e-06
+                                     workers: 5
+                                     world_size: -1
+INFO - 12/13/22 21:42:00 - 0:00:00 - The experiment will be stored in D:\code_cluster\me_swav\facebook_swav\experiments\014_linear
+                                     
+
+INFO - 12/13/22 21:42:00 - 0:00:00 - 0  _CudaDeviceProperties(name='NVIDIA GeForce RTX 3060', major=8, minor=6, total_memory=12287MB, multi_processor_count=28)
+INFO - 12/13/22 21:42:00 - 0:00:00 - 1  _CudaDeviceProperties(name='NVIDIA GeForce RTX 3060', major=8, minor=6, total_memory=12287MB, multi_processor_count=28)
+INFO - 12/13/22 21:42:00 - 0:00:00 - build training dataset (start)
+INFO - 12/13/22 21:42:09 - 0:00:09 - build training dataset (end)
+INFO - 12/13/22 21:42:09 - 0:00:09 - build validation dataset (start)
+INFO - 12/13/22 21:42:10 - 0:00:09 - build validation dataset (end)
+INFO - 12/13/22 21:42:10 - 0:00:09 - Building data done
+INFO - 12/13/22 21:42:11 - 0:00:10 - Load pretrained model with msg: _IncompatibleKeys(missing_keys=[], unexpected_keys=['module.projection_head.0.weight', 'module.projection_head.0.bias', 'module.projection_head.1.weight', 'module.projection_head.1.bias', 'module.projection_head.1.running_mean', 'module.projection_head.1.running_var', 'module.projection_head.1.num_batches_tracked', 'module.projection_head.3.weight', 'module.projection_head.3.bias', 'module.prototypes.weight'])
+INFO - 12/13/22 21:42:11 - 0:00:10 - ============ Starting epoch 0 ... ============
+INFO - 12/13/22 21:42:33 - 0:00:33 - Epoch[0] - Iter: [0/2503]	Time 22.277 (22.277)	Data 15.458 (15.458)	Loss 6.9114 (6.9114)	Prec 0.000 (0.000)	LR 0.3
+INFO - 12/13/22 21:42:59 - 0:00:59 - Epoch[0] - Iter: [50/2503]	Time 0.515 (0.944)	Data 0.000 (0.303)	Loss 6.2337 (6.6237)	Prec 15.820 (6.204)	LR 0.3
+INFO - 12/13/22 21:43:25 - 0:01:24 - Epoch[0] - Iter: [100/2503]	Time 0.516 (0.733)	Data 0.000 (0.153)	Loss 5.4222 (6.2289)	Prec 27.539 (14.279)	LR 0.3
+INFO - 12/13/22 21:43:51 - 0:01:50 - Epoch[0] - Iter: [150/2503]	Time 0.517 (0.662)	Data 0.000 (0.103)	Loss 4.8223 (5.8547)	Prec 36.719 (20.380)	LR 0.3
+INFO - 12/13/22 21:44:16 - 0:02:16 - Epoch[0] - Iter: [200/2503]	Time 0.522 (0.626)	Data 0.000 (0.077)	Loss 4.3507 (5.5206)	Prec 37.695 (25.020)	LR 0.3
+INFO - 12/13/22 21:44:43 - 0:02:43 - Epoch[0] - Iter: [250/2503]	Time 0.517 (0.606)	Data 0.000 (0.064)	Loss 3.8628 (5.2244)	Prec 42.188 (28.600)	LR 0.3
+INFO - 12/13/22 21:45:10 - 0:03:10 - Epoch[0] - Iter: [300/2503]	Time 0.517 (0.596)	Data 0.000 (0.057)	Loss 3.6140 (4.9623)	Prec 44.336 (31.567)	LR 0.3
+INFO - 12/13/22 21:45:37 - 0:03:36 - Epoch[0] - Iter: [350/2503]	Time 0.516 (0.587)	Data 0.000 (0.052)	Loss 3.4038 (4.7363)	Prec 48.633 (33.983)	LR 0.3
+INFO - 12/13/22 21:46:04 - 0:04:04 - Epoch[0] - Iter: [400/2503]	Time 0.520 (0.581)	Data 0.000 (0.048)	Loss 3.0747 (4.5415)	Prec 50.586 (35.955)	LR 0.3
+INFO - 12/13/22 21:46:31 - 0:04:31 - Epoch[0] - Iter: [450/2503]	Time 0.517 (0.577)	Data 0.000 (0.045)	Loss 2.9309 (4.3702)	Prec 51.953 (37.610)	LR 0.3
+INFO - 12/13/22 21:46:58 - 0:04:58 - Epoch[0] - Iter: [500/2503]	Time 0.517 (0.574)	Data 0.000 (0.044)	Loss 2.8229 (4.2174)	Prec 52.148 (39.049)	LR 0.3
+INFO - 12/13/22 21:47:26 - 0:05:26 - Epoch[0] - Iter: [550/2503]	Time 0.517 (0.572)	Data 0.000 (0.043)	Loss 2.5189 (4.0813)	Prec 55.078 (40.347)	LR 0.3
+INFO - 12/13/22 21:47:53 - 0:05:53 - Epoch[0] - Iter: [600/2503]	Time 0.518 (0.570)	Data 0.000 (0.042)	Loss 2.6670 (3.9613)	Prec 52.344 (41.446)	LR 0.3
