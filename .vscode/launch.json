@@ -243,6 +243,55 @@
                 "--batch_size", "512"
             ]
         },
+        {
+            "name": "017_linear",
+            "type": "python",
+            "request": "launch",
+            "program": "swav\\eval_linear.py",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": [
+                "--data_path", "C:\\Users\\chris\\Downloads\\ILSVRC\\Data\\CLS-LOC",
+                "--pretrained", "D:\\code_cluster\\me_swav\\pretrained\\swav_800ep_pretrain.pth.tar",
+                "--dump_path", "D:\\code_cluster\\me_swav\\facebook_swav\\experiments\\017_linear",
+                "--batch_size", "512"
+            ]
+        },
+        {
+            "name": "018_main_swav",
+            "type": "python",
+            "request": "launch",
+            "program": "swav/main_swav.py",
+            "console": "integratedTerminal",
+            "justMyCode": false,
+            "args": [
+                "--data_path", "C:\\Users\\chris\\Downloads\\ILSVRC\\Data\\CLS-LOC",
+                "--dump_path", "D:\\code_cluster\\me_swav\\facebook_swav\\experiments\\018_main_swav",
+                "--nmb_crops", "2", "6",
+                "--size_crops", "224", "96",
+                "--min_scale_crops", "0.14", "0.05",
+                "--max_scale_crops", "1.", "0.14",
+                "--crops_for_assign", "0", "1",
+                "--temperature", "0.1",
+                "--epsilon", "0.05",
+                "--sinkhorn_iterations", "3",
+                "--feat_dim", "128",
+                "--nmb_prototypes", "3000",
+                "--queue_length", "0",
+                "--epochs", "800",
+                "--batch_size", "64",
+                "--base_lr", "4.8",
+                "--final_lr", "0.0048",
+                "--freeze_prototypes_niters", "313",
+                "--wd", "0.000001",
+                "--warmup_epochs", "10",
+                "--start_warmup", "0.3",
+                "--dist_url", "$dist_url",
+                "--arch", "resnet50",
+                "--use_fp16", "false",
+                "--sync_bn", "pytorch",
+            ]
+        },
 
         // C:\Users\chris\Downloads\ILSVRC\Data\CLS-LOC
         //   "--data_path", "C:\\Users\\chris\\Downloads\\QUICK_SUBSET3",
