@@ -9,6 +9,7 @@ import argparse
 from logging import getLogger
 import pickle
 import os
+import datetime
 
 import numpy as np
 import torch
@@ -51,24 +52,25 @@ def init_distributed_mode(args):
             os.environ["SLURM_TASKS_PER_NODE"][0]
         )
     else:
-        # # multi-GPU job (local or multi-node) - jobs started with torch.distributed.launch
-        # # read environment variables
-        # args.rank = int(os.environ["RANK"])
-        # args.world_size = int(os.environ["WORLD_SIZE"])
-
-        # ref: https://pytorch.org/docs/stable/distributed.html
-        os.environ["MASTER_PORT"] = "4999" 
+        # multi-GPU job (local or multi-node) - jobs started with torch.distributed.launch
+        # read environment variables
+        # rank and world size are set earlier (at time of mp inceptiion)
+        #args.rank = int(os.environ["RANK"])
+        #args.world_size = int(os.environ["WORLD_SIZE"])
+        print("zona - temporary until system re-start... ref: https://pytorch.org/docs/stable/distributed.html")
         os.environ["MASTER_ADDR"] = 'localhost'
-        os.environ["WORLD_SIZE"] = "1" 
-        os.environ["RANK"] = "0"
+        os.environ["MASTER_PORT"] = '12355'
 
     # prepare distributed
+    print("init process group (start) - rank {} method {}".format(args.rank, args.dist_url))
     dist.init_process_group(
         backend="gloo",
-        init_method=None,
+        init_method=args.dist_url,
         world_size=args.world_size,
         rank=args.rank,
+        timeout=datetime.timedelta(seconds=20),
     )
+    print("init process group (end)".format(args.rank))
 
     # set cuda device
     args.gpu_to_work_on = args.rank % torch.cuda.device_count()

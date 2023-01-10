@@ -4,9 +4,8 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-
         {
-            "name": "Python: Current File",
+            "name": "Current File",
             "type": "python",
             "request": "launch",
             "program": "${file}",
@@ -14,286 +13,110 @@
             "justMyCode": true
         },
         {
-            "name": "001_linear",
+            "name": "cw_main_swav_02_printmodel",
             "type": "python",
             "request": "launch",
-            "program": "eval_linear.py",
+            "program": "cw_main_swav_02_printmodel.py",
             "console": "integratedTerminal",
-            "justMyCode": true,
+            "justMyCode": false,
             "args": [
+                "--dump_path", "D:\\code_cluster\\me_swav\\facebook_swav\\experiments\\cw_main_swav_02_printmodel",
+                "--dist_url", "file:\\C:\\Users\\chris\\pytorch_runtime_ddp_process\\swav_main",
                 "--data_path", "C:\\Users\\chris\\Downloads\\ILSVRC\\Data\\CLS-LOC",
-                "--pretrained", "D:\\code_cluster\\me_swav\\pretrained\\swav_800ep_pretrain.pth.tar",
-                "--dump_path", "D:\\code_cluster\\me_swav\\facebook_swav\\experiments\\001_linear"
+                "--epochs", "400",
+                "--base_lr", "0.6",
+                "--final_lr", "0.0006",
+                "--warmup_epochs", "0",
+                "--batch_size", "32",
+                "--size_crops", "224", "96",
+                "--nmb_crops", "2", "6",
+                "--min_scale_crops", "0.14", "0.05",
+                "--max_scale_crops", "1.", "0.14",
+                "--use_fp16", "true",
+                "--freeze_prototypes_niters", "5005",
+                "--queue_length", "3840",
+                "--epoch_queue_starts", "15",
             ]
         },
         {
-            "name": "002_linear",
+            "name": "cw_linear_02_printmodel",
             "type": "python",
             "request": "launch",
-            "program": "eval_linear.py",
+            "program": "cw_linear_02_printmodel.py",
             "console": "integratedTerminal",
-            "justMyCode": true,
+            "justMyCode": false,
             "args": [
+                "--dump_path", "D:\\code_cluster\\me_swav\\facebook_swav\\experiments\\cw_linear_02_printmodel",
+                "--dist_url", "file:\\C:\\Users\\chris\\pytorch_runtime_ddp_process\\swav_linear",
                 "--data_path", "C:\\Users\\chris\\Downloads\\ILSVRC\\Data\\CLS-LOC",
                 "--pretrained", "D:\\code_cluster\\me_swav\\pretrained\\swav_800ep_pretrain.pth.tar",
-                "--dump_path", "D:\\code_cluster\\me_swav\\facebook_swav\\experiments\\002_linear"
             ]
         },
         {
-            "name": "003_linear",
+            "name": "cw_linear_03_twogpu",
             "type": "python",
             "request": "launch",
-            "program": "eval_linear.py",
+            "program": "cw_linear_03_twogpu.py",
             "console": "integratedTerminal",
-            "justMyCode": true,
+            "justMyCode": false,
             "args": [
+                "--dump_path", "D:\\code_cluster\\me_swav\\facebook_swav\\experiments\\cw_linear_03_twogpu",
+                "--dist_url", "file:\\C:\\Users\\chris\\pytorch_runtime_ddp_process\\swav_linear",
                 "--data_path", "C:\\Users\\chris\\Downloads\\ILSVRC\\Data\\CLS-LOC",
                 "--pretrained", "D:\\code_cluster\\me_swav\\pretrained\\swav_800ep_pretrain.pth.tar",
-                "--dump_path", "D:\\code_cluster\\me_swav\\facebook_swav\\experiments\\003_linear",
-                "--batch_size", "64"
-            ]
-        },
-        {
-            "name": "004_linear",
-            "type": "python",
-            "request": "launch",
-            "program": "eval_linear.py",
-            "console": "integratedTerminal",
-            "justMyCode": true,
-            "args": [
-                "--data_path", "C:\\Users\\chris\\Downloads\\ILSVRC\\Data\\CLS-LOC",
-                "--pretrained", "D:\\code_cluster\\me_swav\\pretrained\\swav_800ep_pretrain.pth.tar",
-                "--dump_path", "D:\\code_cluster\\me_swav\\facebook_swav\\experiments\\004_linear",
-                "--batch_size", "128"
-            ]
-        },
-        {
-            "name": "006_linear",
-            "type": "python",
-            "request": "launch",
-            "program": "eval_linear.py",
-            "console": "integratedTerminal",
-            "justMyCode": true,
-            "args": [
-                "--data_path", "C:\\Users\\chris\\Downloads\\ILSVRC\\Data\\CLS-LOC",
-                "--pretrained", "D:\\code_cluster\\me_swav\\pretrained\\swav_800ep_pretrain.pth.tar",
-                "--dump_path", "D:\\code_cluster\\me_swav\\facebook_swav\\experiments\\006_linear",
-                "--batch_size", "512"
-            ]
-        },
-        {
-            "name": "008_linear",
-            "type": "python",
-            "request": "launch",
-            "program": "eval_linear.py",
-            "console": "integratedTerminal",
-            "justMyCode": true,
-            "args": [
-                "--data_path", "C:\\Users\\chris\\Downloads\\ILSVRC\\Data\\CLS-LOC",
-                "--pretrained", "D:\\code_cluster\\me_swav\\pretrained\\swav_800ep_pretrain.pth.tar",
-                "--dump_path", "D:\\code_cluster\\me_swav\\facebook_swav\\experiments\\008_linear",
-                "--batch_size", "2048"
-            ]
-        },
-        {
-            "name": "009_linear",
-            "type": "python",
-            "request": "launch",
-            "program": "eval_linear.py",
-            "console": "integratedTerminal",
-            "justMyCode": true,
-            "args": [
-                "--data_path", "C:\\Users\\chris\\Downloads\\ILSVRC\\Data\\CLS-LOC",
-                "--pretrained", "D:\\code_cluster\\me_swav\\pretrained\\swav_800ep_pretrain.pth.tar",
-                "--dump_path", "D:\\code_cluster\\me_swav\\facebook_swav\\experiments\\009_linear",
-                "--batch_size", "512"
-            ]
-        },
-        {
-            "name": "010_linear",
-            "type": "python",
-            "request": "launch",
-            "program": "eval_linear.py",
-            "console": "integratedTerminal",
-            "justMyCode": true,
-            "args": [
-                "--data_path", "C:\\Users\\chris\\Downloads\\ILSVRC\\Data\\CLS-LOC",
-                "--pretrained", "D:\\code_cluster\\me_swav\\pretrained\\swav_800ep_pretrain.pth.tar",
-                "--dump_path", "D:\\code_cluster\\me_swav\\facebook_swav\\experiments\\010_linear",
-                "--batch_size", "512"
-            ]
-        },
-        {
-            "name": "011_linear",
-            "type": "python",
-            "request": "launch",
-            "program": "eval_linear.py",
-            "console": "integratedTerminal",
-            "justMyCode": true,
-            "args": [
-                "--data_path", "C:\\Users\\chris\\Downloads\\ILSVRC\\Data\\CLS-LOC",
-                "--pretrained", "D:\\code_cluster\\me_swav\\pretrained\\swav_800ep_pretrain.pth.tar",
-                "--dump_path", "D:\\code_cluster\\me_swav\\facebook_swav\\experiments\\011_linear",
-                "--batch_size", "1024"
-            ]
-        },
-        {
-            "name": "012_linear",
-            "type": "python",
-            "request": "launch",
-            "program": "swav/eval_linear.py",
-            "console": "integratedTerminal",
-            "justMyCode": true,
-            "args": [
-                "--data_path", "C:\\Users\\chris\\Downloads\\ILSVRC\\Data\\CLS-LOC",
-                "--pretrained", "D:\\code_cluster\\me_swav\\pretrained\\swav_800ep_pretrain.pth.tar",
-                "--dump_path", "D:\\code_cluster\\me_swav\\facebook_swav\\experiments\\012_linear",
-                "--batch_size", "1024"
-            ]
-        },
-        {
-            "name": "013_linear",
-            "type": "python",
-            "request": "launch",
-            "program": "swav/eval_linear.py",
-            "console": "integratedTerminal",
-            "justMyCode": true,
-            "args": [
-                "--data_path", "C:\\Users\\chris\\Downloads\\ILSVRC\\Data\\CLS-LOC",
-                "--pretrained", "D:\\code_cluster\\me_swav\\pretrained\\swav_800ep_pretrain.pth.tar",
-                "--dump_path", "D:\\code_cluster\\me_swav\\facebook_swav\\experiments\\013_linear",
-                "--batch_size", "512"
-            ]
-        },
-        {
-            "name": "014_linear",
-            "type": "python",
-            "request": "launch",
-            "program": "swav/eval_linear.py",
-            "console": "integratedTerminal",
-            "justMyCode": true,
-            "args": [
-                "--data_path", "C:\\Users\\chris\\Downloads\\ILSVRC\\Data\\CLS-LOC",
-                "--pretrained", "D:\\code_cluster\\me_swav\\pretrained\\swav_800ep_pretrain.pth.tar",
-                "--dump_path", "D:\\code_cluster\\me_swav\\facebook_swav\\experiments\\014_linear",
                 "--batch_size", "512",
-                "--workers", "5"
             ]
         },
         {
-            "name": "015a_eval_lin_model",
+            "name": "cw_semisup_01",
             "type": "python",
             "request": "launch",
-            "program": "swav/eval_linear.py",
+            "program": "cw_semisup_01.py",
             "console": "integratedTerminal",
             "justMyCode": false,
             "args": [
-                "--data_path", "C:\\Users\\chris\\Downloads\\ILSVRC\\Data\\CLS-LOC",
+                "--dump_path", "D:\\code_cluster\\me_swav\\facebook_swav\\experiments\\cw_semisup_01",
+                "--dist_url", "file:\\C:\\Users\\chris\\pytorch_runtime_ddp_process\\swav_semisup",
+                "--data_path", "C:\\Users\\chris\\Downloads\\QUICK_SUBSET2",
                 "--pretrained", "D:\\code_cluster\\me_swav\\pretrained\\swav_800ep_pretrain.pth.tar",
-                "--dump_path", "D:\\code_cluster\\me_swav\\facebook_swav\\experiments\\015a_eval_lin_model",
-                "--batch_size", "64",
+                "--labels_perc", "10",
+                "--lr", "0.01",
+                "--lr_last_laye", "0.2",
             ]
         },
         {
-            "name": "015b_main_swav_model",
+            "name": "cw_semisup_02",
             "type": "python",
             "request": "launch",
-            "program": "swav/main_swav.py",
+            "program": "cw_semisup_02.py",
             "console": "integratedTerminal",
             "justMyCode": false,
             "args": [
-                "--data_path", "C:\\Users\\chris\\Downloads\\ILSVRC\\Data\\CLS-LOC",
-                "--dump_path", "D:\\code_cluster\\me_swav\\facebook_swav\\experiments\\015b_main_swav_model",
-                "--nmb_crops", "2", "6",
-                "--size_crops", "224", "96",
-                "--min_scale_crops", "0.14", "0.05",
-                "--max_scale_crops", "1.", "0.14",
-                "--crops_for_assign", "0", "1",
-                "--temperature", "0.1",
-                "--epsilon", "0.05",
-                "--sinkhorn_iterations", "3",
-                "--feat_dim", "128",
-                "--nmb_prototypes", "3000",
-                "--queue_length", "0",
-                "--epochs", "800",
-                "--batch_size", "64",
-                "--base_lr", "4.8",
-                "--final_lr", "0.0048",
-                "--freeze_prototypes_niters", "313",
-                "--wd", "0.000001",
-                "--warmup_epochs", "10",
-                "--start_warmup", "0.3",
-                "--dist_url", "$dist_url",
-                "--arch", "resnet50",
-                "--use_fp16", "false",
-                "--sync_bn", "pytorch",
-            ]
-        },
-        {
-            "name": "016_linear_fullrun",
-            "type": "python",
-            "request": "launch",
-            "program": "swav\\eval_linear.py",
-            "console": "integratedTerminal",
-            "justMyCode": true,
-            "args": [
+                "--dump_path", "D:\\code_cluster\\me_swav\\facebook_swav\\experiments\\cw_semisup_02",
+                "--dist_url", "file:\\C:\\Users\\chris\\pytorch_runtime_ddp_process\\swav_semisup",
                 "--data_path", "C:\\Users\\chris\\Downloads\\ILSVRC\\Data\\CLS-LOC",
                 "--pretrained", "D:\\code_cluster\\me_swav\\pretrained\\swav_800ep_pretrain.pth.tar",
-                "--dump_path", "D:\\code_cluster\\me_swav\\facebook_swav\\experiments\\016_linear_fullrun",
-                "--batch_size", "512"
+                "--labels_perc", "1",
+                "--lr", "0.02",
+                "--lr_last_layer", "5",
             ]
         },
         {
-            "name": "017_linear",
+            "name": "cw_semisup_03_printmodel",
             "type": "python",
             "request": "launch",
-            "program": "swav\\eval_linear.py",
-            "console": "integratedTerminal",
-            "justMyCode": true,
-            "args": [
-                "--data_path", "C:\\Users\\chris\\Downloads\\ILSVRC\\Data\\CLS-LOC",
-                "--pretrained", "D:\\code_cluster\\me_swav\\pretrained\\swav_800ep_pretrain.pth.tar",
-                "--dump_path", "D:\\code_cluster\\me_swav\\facebook_swav\\experiments\\017_linear",
-                "--batch_size", "512"
-            ]
-        },
-        {
-            "name": "018_main_swav",
-            "type": "python",
-            "request": "launch",
-            "program": "swav/main_swav.py",
+            "program": "cw_semisup_03_printmodel.py",
             "console": "integratedTerminal",
             "justMyCode": false,
             "args": [
+                "--dump_path", "D:\\code_cluster\\me_swav\\facebook_swav\\experiments\\cw_semisup_03_printmodel",
+                "--dist_url", "file:\\C:\\Users\\chris\\pytorch_runtime_ddp_process\\swav_semisup",
                 "--data_path", "C:\\Users\\chris\\Downloads\\ILSVRC\\Data\\CLS-LOC",
-                "--dump_path", "D:\\code_cluster\\me_swav\\facebook_swav\\experiments\\018_main_swav",
-                "--nmb_crops", "2", "6",
-                "--size_crops", "224", "96",
-                "--min_scale_crops", "0.14", "0.05",
-                "--max_scale_crops", "1.", "0.14",
-                "--crops_for_assign", "0", "1",
-                "--temperature", "0.1",
-                "--epsilon", "0.05",
-                "--sinkhorn_iterations", "3",
-                "--feat_dim", "128",
-                "--nmb_prototypes", "3000",
-                "--queue_length", "0",
-                "--epochs", "800",
-                "--batch_size", "64",
-                "--base_lr", "4.8",
-                "--final_lr", "0.0048",
-                "--freeze_prototypes_niters", "313",
-                "--wd", "0.000001",
-                "--warmup_epochs", "10",
-                "--start_warmup", "0.3",
-                "--dist_url", "$dist_url",
-                "--arch", "resnet50",
-                "--use_fp16", "false",
-                "--sync_bn", "pytorch",
+                "--pretrained", "D:\\code_cluster\\me_swav\\pretrained\\swav_800ep_pretrain.pth.tar",
+                "--labels_perc", "1",
+                "--lr", "0.02",
+                "--lr_last_layer", "5",
             ]
         },
-
-        // C:\Users\chris\Downloads\ILSVRC\Data\CLS-LOC
-        //   "--data_path", "C:\\Users\\chris\\Downloads\\QUICK_SUBSET3",
     ]
 }
