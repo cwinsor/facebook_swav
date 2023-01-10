@@ -8,9 +8,7 @@
 import argparse
 import os
 import time
-# from logging import getLogger
-from src.logger import create_logger
-
+from logging import getLogger
 import urllib
 
 import torch
@@ -21,8 +19,6 @@ import torch.optim
 import torch.utils.data as data
 import torchvision.transforms as transforms
 import torchvision.datasets as datasets
-
-import torch.multiprocessing as mp
 
 from src.utils import (
     bool_flag,
@@ -35,6 +31,7 @@ from src.utils import (
 )
 import src.resnet50 as resnet_models
 
+logger = getLogger()
 
 
 parser = argparse.ArgumentParser(description="Evaluate models: Fine-tuning with 1% or 10% labels on ImageNet")
@@ -85,25 +82,12 @@ parser.add_argument("--dist_url", default="env://", type=str,
 #                     help="this argument is not used and should be ignored")
 
 
-def main(rank, world_size, args):
-    print("hello from main rank {} world_size {}\n".format(rank, world_size), flush=True)
-
-    # multi-process support - set args.rank, args.world_size
-    args.rank = rank
-    args.world_size = world_size
-
-    # create a logger
-    logger = create_logger(os.path.join(args.dump_path, "log"), rank=rank)
-    logger.info("============ Initialized logger ============")
-    logger.info(
-        "\n".join("%s: %s" % (k, str(v)) for k, v in sorted(dict(vars(args)).items()))
-    )
-
+def main(args):
     global best_acc
     init_distributed_mode(args)
     fix_random_seeds(args.seed)
-    training_stats = initialize_exp(
-        logger, args, "epoch", "loss", "prec1", "prec5", "loss_val", "prec1_val", "prec5_val"
+    logger, training_stats = initialize_exp(
+        args, "epoch", "loss", "prec1", "prec5", "loss_val", "prec1_val", "prec5_val"
     )
 
     # build data
@@ -112,6 +96,15 @@ def main(rank, world_size, args):
     # take either 1% or 10% of images
     subset_file = urllib.request.urlopen("https://raw.githubusercontent.com/google-research/simclr/master/imagenet_subsets/" + str(args.labels_perc) + "percent.txt")
     list_imgs = [li.decode("utf-8").split('\n')[0] for li in subset_file]
+    # for li in list_imgs:
+    #     f1 = train_data_path
+    #     f2 = li
+    #     f3 = li.split('_')[0]
+    #     t1 = os.path.join(f1, f3, f2)
+    #     t2 = train_dataset.class_to_idx[f3]
+    #     print("--------")
+
+
     train_dataset.samples = [(
         os.path.join(train_data_path, li.split('_')[0], li),
         train_dataset.class_to_idx[li.split('_')[0]]
@@ -151,9 +144,15 @@ def main(rank, world_size, args):
     # build model
     model = resnet_models.__dict__[args.arch](output_dim=1000)
 
+    print("-------- model(a) ----------")
+    logger.info(print(model))
+
     # convert batch norm layers
     model = nn.SyncBatchNorm.convert_sync_batchnorm(model)
 
+    print("-------- model(b) ----------")
+    logger.info(print(model))
+    
     # load weights
     if os.path.isfile(args.pretrained):
         state_dict = torch.load(args.pretrained, map_location="cuda:" + str(args.gpu_to_work_on))
@@ -171,6 +170,9 @@ def main(rank, world_size, args):
         logger.info("Load pretrained model with msg: {}".format(msg))
     else:
         logger.info("No pretrained weights found => training from random weights")
+
+    print("-------- model(c) ----------")
+    logger.info(print(model))
 
     # model to gpu
     model = model.cuda()
@@ -221,14 +223,14 @@ def main(rank, world_size, args):
         # set samplers
         train_loader.sampler.set_epoch(epoch)
 
-        scores = train(model, optimizer, train_loader, epoch, rank)
-        scores_val = validate_network(val_loader, model, rank)
+        scores = train(model, optimizer, train_loader, epoch)
+        scores_val = validate_network(val_loader, model)
         training_stats.update(scores + scores_val)
 
         scheduler.step()
 
         # save checkpoint
-        if rank == 0:
+        if args.rank == 0:
             save_dict = {
                 "epoch": epoch + 1,
                 "state_dict": model.state_dict(),
@@ -242,7 +244,7 @@ def main(rank, world_size, args):
                 args.labels_perc, acc1=best_acc[0], acc5=best_acc[1]))
 
 
-def train(model, optimizer, loader, epoch, rank):
+def train(model, optimizer, loader, epoch):
     """
     Train the models on the dataset.
     """
@@ -269,7 +271,7 @@ def train(model, optimizer, loader, epoch, rank):
 
         # forward
         output = model(inp)
-
+          
         # compute cross entropy loss
         loss = criterion(output, target)
 
@@ -290,7 +292,7 @@ def train(model, optimizer, loader, epoch, rank):
         end = time.perf_counter()
 
         # verbose
-        if rank == 0 and iter_epoch % 50 == 0:
+        if args.rank == 0 and iter_epoch % 50 == 0:
             logger.info(
                 "Epoch[{0}] - Iter: [{1}/{2}]\t"
                 "Time {batch_time.val:.3f} ({batch_time.avg:.3f})\t"
@@ -313,7 +315,7 @@ def train(model, optimizer, loader, epoch, rank):
     return epoch, losses.avg, top1.avg.item(), top5.avg.item()
 
 
-def validate_network(val_loader, model, rank):
+def validate_network(val_loader, model):
     batch_time = AverageMeter()
     losses = AverageMeter()
     top1 = AverageMeter()
@@ -349,7 +351,7 @@ def validate_network(val_loader, model, rank):
     if top1.avg.item() > best_acc[0]:
         best_acc = (top1.avg.item(), top5.avg.item())
 
-    if rank == 0:
+    if args.rank == 0:
         logger.info(
             "Test:\t"
             "Time {batch_time.avg:.3f}\t"
@@ -360,27 +362,24 @@ def validate_network(val_loader, model, rank):
 
     return losses.avg, top1.avg.item(), top5.avg.item()
 
-def run_mp(args):
+
+if __name__ == "__main__":
+
+    args = parser.parse_args()
 
     # when using torch distributed (ddp) initialization via file
-    # need to delete the sync file before running init_process_group()
+    # confirm the sync file doesn't exist before running init_process_group()
+    # if so - delete it
     # see https://pytorch.org/docs/stable/distributed.html
     syncfile = args.dist_url.split('file:\\')[1]
     if os.path.exists(syncfile):
-        print("removing")
         os.remove(syncfile)
+        print("removed")
     else:
         print("not there")
 
-    world_size = torch.cuda.device_count()
-    print("----- logs at {} -----".format(args.dump_path))
-    print("spawning {} processes".format(world_size))
+    # for distributed data parallel (DDP)... rank is processes number, world_size is number of processes
+    args.rank = 0
+    args.world_size = 1
 
-    mp.spawn(fn=main,
-             args=(world_size, args,),
-             nprocs=world_size,
-             join=True)
-
-if __name__ == "__main__":
-    args = parser.parse_args()
-    run_mp(args)
+    main(args)

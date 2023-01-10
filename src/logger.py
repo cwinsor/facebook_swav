@@ -39,8 +39,10 @@ def create_logger(filepath, rank):
 
     # create file handler and set level to debug
     if filepath is not None:
-        if rank > 0:
-            filepath = "%s-%i" % (filepath, rank)
+        # if rank > 0:
+        import datetime
+        dt = datetime.datetime.now().strftime("%y%m%d_%H%M%S")  
+        filepath = "%s_%s_%i.log" % (filepath, dt, rank)
         file_handler = logging.FileHandler(filepath, "a")
         file_handler.setLevel(logging.DEBUG)
         file_handler.setFormatter(log_formatter)

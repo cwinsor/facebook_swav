@@ -9,6 +9,7 @@ import argparse
 from logging import getLogger
 import pickle
 import os
+import datetime
 
 import numpy as np
 import torch
@@ -53,16 +54,23 @@ def init_distributed_mode(args):
     else:
         # multi-GPU job (local or multi-node) - jobs started with torch.distributed.launch
         # read environment variables
-        args.rank = int(os.environ["RANK"])
-        args.world_size = int(os.environ["WORLD_SIZE"])
+        # rank and world size are set earlier (at time of mp inceptiion)
+        #args.rank = int(os.environ["RANK"])
+        #args.world_size = int(os.environ["WORLD_SIZE"])
+        print("zona - temporary until system re-start... ref: https://pytorch.org/docs/stable/distributed.html")
+        os.environ["MASTER_ADDR"] = 'localhost'
+        os.environ["MASTER_PORT"] = '12355'
 
     # prepare distributed
+    print("init process group (start) - rank {} method {}".format(args.rank, args.dist_url))
     dist.init_process_group(
-        backend="nccl",
+        backend="gloo",
         init_method=args.dist_url,
         world_size=args.world_size,
         rank=args.rank,
+        timeout=datetime.timedelta(seconds=20),
     )
+    print("init process group (end)".format(args.rank))
 
     # set cuda device
     args.gpu_to_work_on = args.rank % torch.cuda.device_count()
@@ -191,6 +199,6 @@ def accuracy(output, target, topk=(1,)):
 
         res = []
         for k in topk:
-            correct_k = correct[:k].view(-1).float().sum(0, keepdim=True)
+            correct_k = correct[:k].reshape(-1).float().sum(0, keepdim=True)
             res.append(correct_k.mul_(100.0 / batch_size))
         return res

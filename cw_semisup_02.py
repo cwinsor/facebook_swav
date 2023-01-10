@@ -73,18 +73,17 @@ parser.add_argument("--gamma", type=float, default=0.2, help="lr decay factor")
 #########################
 parser.add_argument("--dist_url", default="env://", type=str,
                     help="url used to set up distributed training")
-parser.add_argument("--world_size", default=-1, type=int, help="""
-                    number of processes: it is set automatically and
-                    should not be passed as argument""")
-parser.add_argument("--rank", default=0, type=int, help="""rank of this process:
-                    it is set automatically and should not be passed as argument""")
-parser.add_argument("--local_rank", default=0, type=int,
-                    help="this argument is not used and should be ignored")
+# parser.add_argument("--world_size", default=-1, type=int, help="""
+#                     number of processes: it is set automatically and
+#                     should not be passed as argument""")
+# parser.add_argument("--rank", default=0, type=int, help="""rank of this process:
+#                     it is set automatically and should not be passed as argument""")
+# parser.add_argument("--local_rank", default=0, type=int,
+#                     help="this argument is not used and should be ignored")
 
 
-def main():
-    global args, best_acc
-    args = parser.parse_args()
+def main(args):
+    global best_acc
     init_distributed_mode(args)
     fix_random_seeds(args.seed)
     logger, training_stats = initialize_exp(
@@ -97,6 +96,15 @@ def main():
     # take either 1% or 10% of images
     subset_file = urllib.request.urlopen("https://raw.githubusercontent.com/google-research/simclr/master/imagenet_subsets/" + str(args.labels_perc) + "percent.txt")
     list_imgs = [li.decode("utf-8").split('\n')[0] for li in subset_file]
+    # for li in list_imgs:
+    #     f1 = train_data_path
+    #     f2 = li
+    #     f3 = li.split('_')[0]
+    #     t1 = os.path.join(f1, f3, f2)
+    #     t2 = train_dataset.class_to_idx[f3]
+    #     print("--------")
+
+
     train_dataset.samples = [(
         os.path.join(train_data_path, li.split('_')[0], li),
         train_dataset.class_to_idx[li.split('_')[0]]
@@ -347,4 +355,22 @@ def validate_network(val_loader, model):
 
 
 if __name__ == "__main__":
-    main()
+
+    args = parser.parse_args()
+
+    # when using torch distributed (ddp) initialization via file
+    # confirm the sync file doesn't exist before running init_process_group()
+    # if so - delete it
+    # see https://pytorch.org/docs/stable/distributed.html
+    syncfile = args.dist_url.split('file:\\')[1]
+    if os.path.exists(syncfile):
+        os.remove(syncfile)
+        print("removed")
+    else:
+        print("not there")
+
+    # for distributed data parallel (DDP)... rank is processes number, world_size is number of processes
+    args.rank = 0
+    args.world_size = 1
+
+    main(args)
