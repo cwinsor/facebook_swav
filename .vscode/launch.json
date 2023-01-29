@@ -68,6 +68,21 @@
             ]
         },
         {
+            "name": "cw_linear_04_twogpu_printexpected",
+            "type": "python",
+            "request": "launch",
+            "program": "cw_linear_04_twogpu_printexpected.py",
+            "console": "integratedTerminal",
+            "justMyCode": false,
+            "args": [
+                "--dump_path", "D:\\code_cluster\\me_swav\\facebook_swav\\experiments\\cw_linear_04_twogpu_printexpected",
+                "--dist_url", "file:\\C:\\Users\\chris\\pytorch_runtime_ddp_process\\swav_linear",
+                "--data_path", "C:\\Users\\chris\\Downloads\\ILSVRC\\Data\\CLS-LOC",
+                "--pretrained", "D:\\code_cluster\\me_swav\\pretrained\\swav_800ep_pretrain.pth.tar",
+                "--batch_size", "512",
+            ]
+        },
+        {
             "name": "cw_semisup_01",
             "type": "python",
             "request": "launch",
@@ -110,6 +125,23 @@
             "justMyCode": false,
             "args": [
                 "--dump_path", "D:\\code_cluster\\me_swav\\facebook_swav\\experiments\\cw_semisup_03_printmodel",
+                "--dist_url", "file:\\C:\\Users\\chris\\pytorch_runtime_ddp_process\\swav_semisup",
+                "--data_path", "C:\\Users\\chris\\Downloads\\ILSVRC\\Data\\CLS-LOC",
+                "--pretrained", "D:\\code_cluster\\me_swav\\pretrained\\swav_800ep_pretrain.pth.tar",
+                "--labels_perc", "1",
+                "--lr", "0.02",
+                "--lr_last_layer", "5",
+            ]
+        },
+        {
+            "name": "cw_semisup_04_printexpected",
+            "type": "python",
+            "request": "launch",
+            "program": "cw_semisup_04_printexpected.py",
+            "console": "integratedTerminal",
+            "justMyCode": false,
+            "args": [
+                "--dump_path", "D:\\code_cluster\\me_swav\\facebook_swav\\experiments\\cw_semisup_04_printexpected",
                 "--dist_url", "file:\\C:\\Users\\chris\\pytorch_runtime_ddp_process\\swav_semisup",
                 "--data_path", "C:\\Users\\chris\\Downloads\\ILSVRC\\Data\\CLS-LOC",
                 "--pretrained", "D:\\code_cluster\\me_swav\\pretrained\\swav_800ep_pretrain.pth.tar",
